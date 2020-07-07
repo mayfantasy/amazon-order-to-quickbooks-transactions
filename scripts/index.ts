@@ -10,8 +10,8 @@ import { IProvice } from '../types/province'
 
 const parser = csv({ separator: '\t' })
 const unitCost = 2.6
-const fromDate = '2020-04-01'
-const toDate = '2020-04-30'
+const fromDate = '2020-06-01'
+const toDate = '2020-06-30'
 
 const importPath = path.join(
   __dirname,
