@@ -10,8 +10,8 @@ import { IProvice } from '../types/province'
 
 const parser = csv({ separator: '\t' })
 const unitCost = 2.6
-const fromDate = '2020-09-01'
-const toDate = '2020-09-30'
+const fromDate = '2020-11-01'
+const toDate = '2020-11-30'
 
 const importPath = path.join(
   __dirname,
@@ -51,7 +51,7 @@ fs.createReadStream(importPath)
       Debit: 'Debit'
     }
     const orders = allOrders.filter(
-      (o) => o['item-status'] !== IItemStatus.Cancelled
+      (o) => o['item-status'] === IItemStatus.Shipped
     )
 
     // Orders
@@ -117,8 +117,7 @@ const convertHst = (orders: IOrder[]): ITransaction[] => {
               (Number(c['item-tax']) ||
                 // Number(c['item-price']) *
                 // (mapProvinceToTaxRate[c['ship-state'] as IProvice] || 0.13)
-                  0
-                  ) +
+                0) +
               Number(c['shipping-tax'] + Number(c['gift-wrap-tax']))
             )
           }, 0)
